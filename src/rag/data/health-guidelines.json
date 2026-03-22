@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Daily Calorie Needs Calculation",
+    "content": "Basal Metabolic Rate (BMR) using Mifflin-St Jeor: Males = 10×weight(kg) + 6.25×height(cm) - 5×age - 5. Females = 10×weight(kg) + 6.25×height(cm) - 5×age - 161. Multiply by activity factor: Sedentary(1.2), Lightly Active(1.375), Moderately Active(1.55), Very Active(1.725), Extra Active(1.9). This gives Total Daily Energy Expenditure (TDEE).",
+    "source": "Mifflin-St Jeor Equation (1990)"
+  },
+  {
+    "title": "Weight Loss Calorie Deficit",
+    "content": "A safe deficit is 500-750 kcal/day below TDEE for 0.5-0.7 kg loss per week. No less than 1200 kcal/day for women or 1500 kcal/day for men. Rapid weight loss (>1kg/week) risks muscle loss, nutrient deficiency, and metabolic adaptation. Include strength training to preserve lean mass during deficit.",
+    "source": "American Dietetic Association"
+  },
+  {
+    "title": "Muscle Gain Calorie Surplus",
+    "content": "A surplus of 250-500 kcal/day above TDEE supports muscle gain of 0.25-0.5 kg/month. Lean bulking (smaller surplus) minimizes fat gain. Novice lifters can gain muscle more rapidly (0.5-1 kg/month). Protein intake of 1.6-2.2g/kg bodyweight is recommended.",
+    "source": "International Society of Sports Nutrition (ISSN)"
+  },
+  {
+    "title": "Protein Requirements for Athletes",
+    "content": "Recommended protein intake: 1.6-2.2g/kg bodyweight/day for muscle building. Endurance athletes: 1.2-1.6g/kg/day. General population: 0.8g/kg/day. Distribute protein across 3-5 meals (20-40g per meal) for optimal muscle protein synthesis. Leucine threshold is 2-3g per meal.",
+    "source": "ISSN Position Stand on Protein (2017)"
+  },
+  {
+    "title": "Macro Ratios for Weight Loss",
+    "content": "Recommended macronutrient distribution for weight loss: Protein 30-35% (preserves muscle), Carbs 30-40% (energy), Fat 25-35% (hormones, satiety). High protein intake during a deficit is critical to minimize muscle loss. Carb timing around workouts improves performance.",
+    "source": "ISSN Nutrition Guidelines"
+  },
+  {
+    "title": "Macro Ratios for Muscle Gain",
+    "content": "Recommended macronutrient distribution for muscle gain: Protein 25-30% (1.6-2.2g/kg), Carbs 40-50% (fuel for training), Fat 20-30%. Prioritize carbs around workouts. Post-workout: 20-40g protein + 40-80g carbs within 2 hours for optimal recovery and glycogen replenishment.",
+    "source": "ISSN Nutrition Guidelines"
+  },
+  {
+    "title": "Hydration Guidelines",
+    "content": "General guideline: 30-35ml per kg bodyweight per day. A 70kg person needs ~2.1-2.5L daily. During exercise: 400-800ml/hour depending on sweat rate. Signs of dehydration: dark urine, fatigue, headache, decreased performance. Electrolytes needed when sweating heavily (>1 hour of exercise).",
+    "source": "ACSM Hydration Guidelines"
+  },
+  {
+    "title": "Sleep and Recovery for Fitness",
+    "content": "Adults need 7-9 hours of sleep per night. Sleep deprivation (<6 hours) decreases testosterone by 10-15%, increases cortisol, impairs muscle protein synthesis, increases appetite hormones (ghrelin), and reduces insulin sensitivity. Sleep is when 95% of growth hormone is released.",
+    "source": "National Sleep Foundation"
+  },
+  {
+    "title": "Progressive Overload Principle",
+    "content": "For continued strength and muscle gains, training stimulus must increase over time. Methods: increase weight (2.5-5% per week for beginners), increase reps, increase sets, decrease rest periods, improve form/tempo. Without progressive overload, adaptation plateaus.",
+    "source": "NSCA Strength Training Principles"
+  },
+  {
+    "title": "Rest Days and Overtraining",
+    "content": "Muscle recovery requires 48-72 hours between training the same muscle group. Signs of overtraining: persistent fatigue, decreased performance, mood changes, increased injury risk, elevated resting heart rate. Recommended: 1-2 full rest days per week. Active recovery (walking, yoga) is beneficial.",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "Creatine Supplementation",
+    "content": "Creatine monohydrate is the most researched and effective sports supplement. Dose: 3-5g daily (no loading phase needed). Benefits: increased strength (+5-10%), improved power output, enhanced recovery, brain function support. Safe for long-term use. No need to cycle. Take with water.",
+    "source": "ISSN Position Stand on Creatine (2017)"
+  },
+  {
+    "title": "Intermittent Fasting",
+    "content": "Common protocols: 16:8 (16hr fast, 8hr eating window), 5:2 (5 normal days, 2 low-calorie days). Benefits: may improve insulin sensitivity and autophagy. Not superior to regular calorie restriction for weight loss when calories are equal. May make it harder to hit protein targets for muscle gain.",
+    "source": "New England Journal of Medicine (2019)"
+  },
+  {
+    "title": "Warm-Up and Injury Prevention",
+    "content": "Proper warm-up reduces injury risk by 30-50%. Protocol: 5-10 minutes light cardio (elevated heart rate), dynamic stretches targeting workout muscles, 1-2 warm-up sets at 50-70% working weight. Static stretching before exercise can temporarily decrease strength output.",
+    "source": "British Journal of Sports Medicine"
+  },
+  {
+    "title": "Stretching and Flexibility",
+    "content": "Static stretching best performed post-workout or on rest days, hold each stretch 30-60 seconds. Dynamic stretching before exercise. Yoga/mobility work 2-3x/week improves range of motion, reduces injury risk, and aids recovery. Foam rolling can reduce muscle soreness by 20-30%.",
+    "source": "ACSM Flexibility Guidelines"
+  },
+  {
+    "title": "Alcohol and Fitness",
+    "content": "Alcohol impairs muscle protein synthesis by up to 37%. It disrupts sleep quality (even if making you drowsy), increases cortisol, dehydrates the body, and provides empty calories (7 kcal/g). If consuming, limit to 1-2 drinks and avoid on heavy training days. Allow 48 hours between heavy drinking and training.",
+    "source": "Journal of Clinical Endocrinology"
+  },
+  {
+    "title": "Fiber Intake Recommendations",
+    "content": "Recommended daily fiber: 25g for women, 38g for men. Most people consume only 15g. Benefits: improved satiety (helps with weight loss), better gut health, lower cholesterol, stable blood sugar. Sources: vegetables, fruits, legumes, whole grains. Increase gradually to avoid digestive discomfort.",
+    "source": "American Heart Association"
+  },
+  {
+    "title": "Healthy Fats Importance",
+    "content": "Fat should comprise 20-35% of total calories. Essential for hormone production (especially testosterone), vitamin absorption (A, D, E, K), brain function, and cell membrane integrity. Prioritize unsaturated fats (olive oil, nuts, avocado, fish). Limit saturated fat to <10% of total calories.",
+    "source": "Dietary Guidelines for Americans"
+  },
+  {
+    "title": "Rep Ranges for Different Goals",
+    "content": "Strength: 1-5 reps at 85-100% 1RM, 3-5 sets, 3-5 min rest. Hypertrophy (muscle growth): 6-12 reps at 67-85% 1RM, 3-4 sets, 60-90 sec rest. Endurance: 12-20+ reps at 50-67% 1RM, 2-3 sets, 30-60 sec rest. Mixing rep ranges provides the most well-rounded results.",
+    "source": "NSCA Strength Training Guidelines"
+  },
+  {
+    "title": "Body Recomposition",
+    "content": "Simultaneous fat loss and muscle gain is possible for: beginners, overweight individuals, detrained athletes, and those on performance-enhancing drugs. Requires eating at maintenance or slight deficit, high protein (2g/kg+), and consistent strength training. Progress is slower than dedicated bulk/cut cycles.",
+    "source": "Sports Medicine Journal (2020)"
+  },
+  {
+    "title": "Caffeine for Exercise Performance",
+    "content": "Caffeine improves exercise performance by 2-5%. Optimal dose: 3-6mg/kg bodyweight, consumed 30-60 minutes before exercise. Benefits: increased alertness, reduced perceived exertion, enhanced fat oxidation. Tolerance develops with regular use. Avoid after 2pm for sleep quality.",
+    "source": "ISSN Position Stand on Caffeine (2021)"
+  }
+]
