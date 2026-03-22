@@ -1,0 +1,182 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+enum KnowledgeCategory {
+  NUTRITION
+  EXERCISE
+  HEALTH
+}
+
+model KnowledgeChunk {
+  id        String                     @id @default(uuid())
+  category  KnowledgeCategory
+  title     String
+  content   String
+  source    String?
+  embedding Unsupported("vector(768)")
+  createdAt DateTime                   @default(now())
+
+  @@map("knowledge_chunks")
+}
+
+enum FitnessGoal {
+  LOSE_WEIGHT
+  GAIN_MUSCLE
+  MAINTAIN
+  IMPROVE_ENDURANCE
+  INCREASE_FLEXIBILITY
+}
+
+enum DietPreference {
+  NONE
+  VEGETARIAN
+  VEGAN
+  KETO
+  PALEO
+  GLUTEN_FREE
+}
+
+enum ActivityLevel {
+  SEDENTARY
+  LIGHTLY_ACTIVE
+  MODERATELY_ACTIVE
+  VERY_ACTIVE
+  EXTRA_ACTIVE
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model User {
+  id                String         @id @default(uuid())
+  name              String
+  email             String         @unique
+  password          String
+  age               Int?
+  height            Float? // in cm
+  weight            Float? // in kg
+  targetWeight      Float? // in kg
+  fitnessGoal       FitnessGoal?
+  dietPreference    DietPreference @default(NONE)
+  activityLevel     ActivityLevel  @default(SEDENTARY)
+  medicalConditions String? // e.g., "Torn ACL, asthma"
+  refreshToken      String?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  workoutPlans    WorkoutPlan[]
+  mealPlans       MealPlan[]
+  workoutSessions WorkoutSession[]
+  mealLogs        MealLog[]
+  progressLogs    ProgressLog[]
+  chatMessages    ChatMessage[]
+
+  @@map("users")
+}
+
+model WorkoutPlan {
+  id            String      @id @default(uuid())
+  userId        String
+  goal          FitnessGoal
+  difficulty    Difficulty
+  durationWeeks Int
+  workouts      Json // Array of workout objects
+  createdAt     DateTime    @default(now())
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workoutSessions WorkoutSession[]
+
+  @@map("workout_plans")
+}
+
+model MealPlan {
+  id        String   @id @default(uuid())
+  userId    String
+  calories  Int
+  macros    Json // { protein, carbs, fat }
+  meals     Json // Array of meal objects
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("meal_plans")
+}
+
+model WorkoutSession {
+  id            String   @id @default(uuid())
+  userId        String
+  workoutPlanId String?
+  planWeek      Int?
+  planDay       String?
+  exercise      String
+  reps          Int?
+  sets          Int?
+  duration      Int? // in minutes
+  date          DateTime @default(now())
+  formScore     Float? // 0-100 score from pose analysis
+  notes         String?
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workoutPlan WorkoutPlan? @relation(fields: [workoutPlanId], references: [id], onDelete: SetNull)
+
+  @@map("workout_sessions")
+}
+
+model MealLog {
+  id       String   @id @default(uuid())
+  userId   String
+  foodName String
+  calories Int
+  protein  Float
+  carbs    Float
+  fat      Float
+  imageUrl String?
+  date     DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("meal_logs")
+}
+
+model ProgressLog {
+  id          String   @id @default(uuid())
+  userId      String
+  weight      Float? // in kg
+  bodyFat     Float? // percentage
+  muscleMass  Float? // in kg
+  sleepHours  Float? // hours of sleep
+  waterIntake Float? // liters of water
+  steps       Int? // daily steps
+  notes       String?
+  date        DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("progress_logs")
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  userId    String
+  role      String // 'user' or 'ai'
+  content   String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("chat_messages")
+}
