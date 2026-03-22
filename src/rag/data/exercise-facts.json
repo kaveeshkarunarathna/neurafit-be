@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Barbell Back Squat",
+    "content": "Primary muscles: quadriceps, glutes, hamstrings. Secondary: core, lower back, calves. Calories burned: 5-8 kcal/min depending on weight and intensity. Key form cues: feet shoulder-width apart, chest up, knees track over toes, hip crease below parallel for full depth. Common mistakes: knee cave, forward lean, butt wink at bottom.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Conventional Deadlift",
+    "content": "Primary muscles: posterior chain (glutes, hamstrings, erectors). Secondary: traps, lats, core, grip. Calories burned: 6-10 kcal/min. Key form: bar over mid-foot, hips hinge back, neutral spine throughout, bar stays close to body. Common mistakes: rounding lower back, jerking the bar, hyperextending at lockout.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Bench Press",
+    "content": "Primary muscles: pectoralis major, anterior deltoids, triceps. Calories burned: 4-7 kcal/min. Key form: retract scapulae, slight arch in back, feet flat on floor, bar touches mid-chest, wrists stacked over elbows. Common mistakes: bouncing bar off chest, flaring elbows 90 degrees, uneven press.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Pull-ups / Chin-ups",
+    "content": "Primary muscles: latissimus dorsi, biceps brachii. Secondary: rear deltoids, rhomboids, core. Calories burned: 8-10 kcal/min. Pull-ups (overhand) emphasize lats more; chin-ups (underhand) recruit more biceps. Progression: band-assisted → negative reps → bodyweight → weighted.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Overhead Press (OHP)",
+    "content": "Primary muscles: anterior and medial deltoids, triceps. Secondary: upper chest, core, traps. Key form: bar starts at collarbone, press straight up (head moves back then forward), lock out overhead, brace core throughout. Common mistakes: excessive back arch, pressing in front of head.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Barbell Row",
+    "content": "Primary muscles: latissimus dorsi, rhomboids, rear deltoids. Secondary: biceps, erectors, core. Key form: hinge at hips to ~45 degrees, pull bar to lower chest/upper abdomen, squeeze shoulder blades at top. Common mistakes: using momentum, torso too upright, rounding back.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Romanian Deadlift (RDL)",
+    "content": "Primary muscles: hamstrings, glutes. Secondary: erectors, core. Key form: slight knee bend (fixed), hinge at hips, bar slides down thighs, stretch hamstrings until ~90-degree hip angle, maintain neutral spine. Excellent for hamstring hypertrophy and hip hinge patterning.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Lunges (Walking / Static)",
+    "content": "Primary muscles: quadriceps, glutes, hamstrings. Secondary: calves, core (balance). Calories burned: 5-7 kcal/min. Key form: 90-degree angles at both knees, front knee over ankle (not past toes), upright torso. Unilateral exercise — helps address muscle imbalances.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Plank",
+    "content": "Primary muscles: rectus abdominis, transverse abdominis. Secondary: obliques, erectors, shoulders, glutes. Isometric hold. Key form: straight line from head to heels, engage core by pulling belly button to spine, avoid sagging hips or piking. Progress by adding time or weight.",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "Running (Steady State)",
+    "content": "Calories burned: approximately 80-120 kcal per mile depending on bodyweight and pace. A 70kg person running at 6 mph burns approximately 600 kcal/hour. Moderate intensity = 60-70% max heart rate. Benefits: cardiovascular health, endurance, mental health, bone density.",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "HIIT (High Intensity Interval Training)",
+    "content": "Burns 25-30% more calories than steady-state cardio in the same duration. Typical protocol: 20-30 seconds max effort, 60-90 seconds recovery, 15-25 minutes total. EPOC (afterburn) effect can elevate metabolism for 24-48 hours post-exercise. Limit to 2-3 sessions per week for recovery.",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "Push-ups",
+    "content": "Primary muscles: pectorals, anterior deltoids, triceps. Secondary: core, serratus anterior. Calories burned: 7-10 kcal/min. Progressions: incline (easier) → standard → decline → diamond → archer → one-arm. Aim for full range of motion (chest to floor).",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "Dumbbell Curl",
+    "content": "Primary muscle: biceps brachii (short and long head). Secondary: brachialis, brachioradialis. Key form: elbows pinned to sides, full extension at bottom, supinate wrist at top, control the eccentric. Common mistakes: swinging/using momentum, not fully extending.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Leg Press",
+    "content": "Primary muscles: quadriceps, glutes, hamstrings. Safer alternative to squats for beginners. Key form: feet shoulder-width on platform, lower until 90-degree knee bend, do not lock knees at top, keep lower back pressed against pad. Adjust foot position to shift emphasis.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Lat Pulldown",
+    "content": "Primary muscles: latissimus dorsi. Secondary: biceps, rear deltoids, rhomboids. Good pull-up progression exercise. Key form: pull bar to upper chest, lean back slightly, squeeze lats at bottom, control the return. Wide grip emphasizes outer lats; close grip emphasizes mid-back.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Face Pulls",
+    "content": "Primary muscles: rear deltoids, rotator cuff (external rotators). Secondary: rhomboids, mid/lower traps. Essential for shoulder health and posture correction. Key form: pull rope to face level, externally rotate at end, squeeze rear delts. Use light-moderate weight.",
+    "source": "NSCA Exercise Database"
+  },
+  {
+    "title": "Hip Thrust",
+    "content": "Primary muscles: glutes (maximus). Secondary: hamstrings, core. The most effective exercise for glute activation. Key form: upper back on bench, feet flat, drive hips up to full extension, pause and squeeze at top, chin tucked. Can be loaded heavily and progressed with barbell.",
+    "source": "Bret Contreras Research"
+  },
+  {
+    "title": "Cycling (moderate effort)",
+    "content": "Calories burned: 400-600 kcal/hour depending on intensity and bodyweight. Low-impact cardiovascular exercise. Benefits: leg strength, cardiovascular fitness, joint-friendly. 12-14 mph = moderate intensity (60-70% max HR). Indoor cycling classes may burn more.",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "Swimming (freestyle, moderate)",
+    "content": "Calories burned: 400-700 kcal/hour. Full-body exercise engaging all major muscle groups. Low impact on joints — excellent for injury recovery. Improves cardiovascular fitness, flexibility, and muscular endurance. Requires technique for efficiency.",
+    "source": "ACSM Exercise Guidelines"
+  },
+  {
+    "title": "Jump Rope",
+    "content": "Calories burned: 600-1000 kcal/hour depending on speed and bodyweight. Excellent cardiovascular conditioning. Improves coordination, agility, and bone density. Start with 30-second intervals for beginners. Can be high-impact on knees — good shoes recommended.",
+    "source": "ACSM Exercise Guidelines"
+  }
+]
