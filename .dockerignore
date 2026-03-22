@@ -1,0 +1,16 @@
+node_modules
+dist
+build
+.git
+.gitignore
+.env
+.env.*
+*.md
+.prettierrc
+.tmp
+.temp
+coverage
+test
+tmp
+logs
+*.log
