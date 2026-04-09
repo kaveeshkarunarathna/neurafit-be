@@ -1,4 +1,11 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service';
 import { LogProgressDto } from './dto/log-progress.dto';
 import { UpdateProgressDto } from './dto/update-progress.dto';
@@ -42,28 +49,29 @@ export class ProgressService {
   }
 
   async getAnalytics(userId: string, timeframe: string = 'weekly') {
-    const [user, progressLogs, workoutSessions, mealLogs, activePlan] = await Promise.all([
-      this.prisma.user.findUnique({
-        where: { id: userId },
-        select: { targetWeight: true, weight: true },
-      }),
-      this.prisma.progressLog.findMany({
-        where: { userId },
-        orderBy: { date: 'asc' },
-      }),
-      this.prisma.workoutSession.findMany({
-        where: { userId },
-        orderBy: { date: 'asc' },
-      }),
-      this.prisma.mealLog.findMany({
-        where: { userId },
-        orderBy: { date: 'asc' },
-      }),
-      this.prisma.workoutPlan.findFirst({
-        where: { userId },
-        orderBy: { createdAt: 'desc' },
-      }),
-    ]);
+    const [user, progressLogs, workoutSessions, mealLogs, activePlan] =
+      await Promise.all([
+        this.prisma.user.findUnique({
+          where: { id: userId },
+          select: { targetWeight: true, weight: true },
+        }),
+        this.prisma.progressLog.findMany({
+          where: { userId },
+          orderBy: { date: 'asc' },
+        }),
+        this.prisma.workoutSession.findMany({
+          where: { userId },
+          orderBy: { date: 'asc' },
+        }),
+        this.prisma.mealLog.findMany({
+          where: { userId },
+          orderBy: { date: 'asc' },
+        }),
+        this.prisma.workoutPlan.findFirst({
+          where: { userId },
+          orderBy: { createdAt: 'desc' },
+        }),
+      ]);
 
     // Weight trend
     const weightTrend = progressLogs
@@ -85,20 +93,33 @@ export class ProgressService {
     thresholdDate.setDate(thresholdDate.getDate() - daysToCalculate);
 
     // Workout frequency (sessions per threshold metric over defined timeframe)
-    const recentSessions = workoutSessions.filter((s) => s.date >= thresholdDate);
-    const workoutFrequencyMultiplier = timeframe === 'annual' ? 52.14 : timeframe === 'monthly' ? 4.33 : timeframe === 'daily' ? (1/7) : 1; 
+    const recentSessions = workoutSessions.filter(
+      (s) => s.date >= thresholdDate,
+    );
+    const workoutFrequencyMultiplier =
+      timeframe === 'annual'
+        ? 52.14
+        : timeframe === 'monthly'
+          ? 4.33
+          : timeframe === 'daily'
+            ? 1 / 7
+            : 1;
     const workoutFrequency = parseFloat(
       (recentSessions.length / workoutFrequencyMultiplier).toFixed(1),
-    ); 
+    );
 
     // Streak Calculation
-    const uniqueWorkoutDates = [...new Set(workoutSessions.map(s => s.date.toISOString().split('T')[0]))].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+    const uniqueWorkoutDates = [
+      ...new Set(
+        workoutSessions.map((s) => s.date.toISOString().split('T')[0]),
+      ),
+    ].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
     let currentStreak = 0;
     const todayStr = new Date().toISOString().split('T')[0];
     const yesterdayDate = new Date();
     yesterdayDate.setDate(yesterdayDate.getDate() - 1);
     const yesterdayStr = yesterdayDate.toISOString().split('T')[0];
-    
+
     let expectedDate = todayStr;
     if (uniqueWorkoutDates.length > 0 && uniqueWorkoutDates[0] === todayStr) {
       for (const date of uniqueWorkoutDates) {
@@ -111,7 +132,10 @@ export class ProgressService {
           break;
         }
       }
-    } else if (uniqueWorkoutDates.length > 0 && uniqueWorkoutDates[0] === yesterdayStr) {
+    } else if (
+      uniqueWorkoutDates.length > 0 &&
+      uniqueWorkoutDates[0] === yesterdayStr
+    ) {
       expectedDate = yesterdayStr;
       for (const date of uniqueWorkoutDates) {
         if (date === expectedDate) {
@@ -128,16 +152,27 @@ export class ProgressService {
     // Active Plan Progress
     let activePlanProgress: any = null;
     if (activePlan) {
-      const totalPlanDays = (activePlan.workouts as any[]).reduce((total: number, w: any) => total + (w.days?.length || 0), 0);
-      const planSessions = workoutSessions.filter(s => s.workoutPlanId === activePlan.id && s.planDay);
-      const uniqueDaysCompleted = new Set(planSessions.map(s => `${s.planWeek}-${s.planDay}`)).size;
-      
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const totalPlanDays = (activePlan.workouts as any[]).reduce(
+        (total: number, w: any) => total + (w.days?.length || 0),
+        0,
+      );
+      const planSessions = workoutSessions.filter(
+        (s) => s.workoutPlanId === activePlan.id && s.planDay,
+      );
+      const uniqueDaysCompleted = new Set(
+        planSessions.map((s) => `${s.planWeek}-${s.planDay}`),
+      ).size;
+
       activePlanProgress = {
         planId: activePlan.id,
         goal: activePlan.goal,
         completedDays: uniqueDaysCompleted,
         totalDays: totalPlanDays,
-        percentage: totalPlanDays > 0 ? Math.round((uniqueDaysCompleted / totalPlanDays) * 100) : 0
+        percentage:
+          totalPlanDays > 0
+            ? Math.round((uniqueDaysCompleted / totalPlanDays) * 100)
+            : 0,
       };
     }
 
@@ -157,43 +192,66 @@ export class ProgressService {
     // Calorie intake trend
     const recentMeals = mealLogs.filter((m) => m.date >= thresholdDate);
     const avgDailyCalories = recentMeals.length
-      ? Math.round(recentMeals.reduce((sum, m) => sum + m.calories, 0) / (timeframe === 'daily' ? 1 : daysToCalculate))
+      ? Math.round(
+          recentMeals.reduce((sum, m) => sum + m.calories, 0) /
+            (timeframe === 'daily' ? 1 : daysToCalculate),
+        )
       : 0;
 
     // Health averages
     const recentProgress = progressLogs.filter((p) => p.date >= thresholdDate);
-    
+
     const sleepLogs = recentProgress.filter((p) => p.sleepHours != null);
     const avgSleep = sleepLogs.length
-      ? parseFloat((sleepLogs.reduce((sum, p) => sum + (p.sleepHours || 0), 0) / sleepLogs.length).toFixed(1))
+      ? parseFloat(
+          (
+            sleepLogs.reduce((sum, p) => sum + (p.sleepHours || 0), 0) /
+            sleepLogs.length
+          ).toFixed(1),
+        )
       : 0;
 
     const waterLogs = recentProgress.filter((p) => p.waterIntake != null);
     const avgWater = waterLogs.length
-      ? parseFloat((waterLogs.reduce((sum, p) => sum + (p.waterIntake || 0), 0) / waterLogs.length).toFixed(1))
+      ? parseFloat(
+          (
+            waterLogs.reduce((sum, p) => sum + (p.waterIntake || 0), 0) /
+            waterLogs.length
+          ).toFixed(1),
+        )
       : 0;
 
     const stepLogs = recentProgress.filter((p) => p.steps != null);
     const avgSteps = stepLogs.length
-      ? Math.round(stepLogs.reduce((sum, p) => sum + (p.steps || 0), 0) / stepLogs.length)
+      ? Math.round(
+          stepLogs.reduce((sum, p) => sum + (p.steps || 0), 0) /
+            stepLogs.length,
+        )
       : 0;
 
     // Universal Activity Array Mapping (Limits generic history pull to latest 365 Days for Frontend UI handling without rigid blank blocks)
+    // eslint-disable-next-line prefer-const
     let calendarDatesWithActivity = new Set<string>();
     const oneYearAgo = new Date();
     oneYearAgo.setDate(oneYearAgo.getDate() - 365);
-    
-    [...workoutSessions, ...mealLogs, ...progressLogs].forEach(record => {
-      if(record.date >= oneYearAgo) {
+
+    [...workoutSessions, ...mealLogs, ...progressLogs].forEach((record) => {
+      if (record.date >= oneYearAgo) {
         calendarDatesWithActivity.add(record.date.toISOString().split('T')[0]);
       }
     });
 
-    const calendar = Array.from(calendarDatesWithActivity).map(dateStr => ({
-        date: dateStr,
-        hasWorkout: workoutSessions.some(s => s.date.toISOString().split('T')[0] === dateStr),
-        hasMeal: mealLogs.some(m => m.date.toISOString().split('T')[0] === dateStr),
-        hasProgress: progressLogs.some(p => p.date.toISOString().split('T')[0] === dateStr),
+    const calendar = Array.from(calendarDatesWithActivity).map((dateStr) => ({
+      date: dateStr,
+      hasWorkout: workoutSessions.some(
+        (s) => s.date.toISOString().split('T')[0] === dateStr,
+      ),
+      hasMeal: mealLogs.some(
+        (m) => m.date.toISOString().split('T')[0] === dateStr,
+      ),
+      hasProgress: progressLogs.some(
+        (p) => p.date.toISOString().split('T')[0] === dateStr,
+      ),
     }));
 
     return {
@@ -216,7 +274,7 @@ export class ProgressService {
         workoutFrequency: {
           sessionsPerWeek: workoutFrequency,
           sessionsInTimeframe: recentSessions.length,
-          timeframe
+          timeframe,
         },
         formScore: {
           average: avgFormScore,
@@ -236,7 +294,8 @@ export class ProgressService {
   async updateProgress(userId: string, id: string, dto: UpdateProgressDto) {
     const log = await this.prisma.progressLog.findUnique({ where: { id } });
     if (!log) throw new NotFoundException('Progress log not found');
-    if (log.userId !== userId) throw new ForbiddenException('Not authorized to access this resource');
+    if (log.userId !== userId)
+      throw new ForbiddenException('Not authorized to access this resource');
 
     const updated = await this.prisma.progressLog.update({
       where: { id },
@@ -251,7 +310,8 @@ export class ProgressService {
   async deleteProgress(userId: string, id: string) {
     const log = await this.prisma.progressLog.findUnique({ where: { id } });
     if (!log) throw new NotFoundException('Progress log not found');
-    if (log.userId !== userId) throw new ForbiddenException('Not authorized to access this resource');
+    if (log.userId !== userId)
+      throw new ForbiddenException('Not authorized to access this resource');
 
     await this.prisma.progressLog.delete({ where: { id } });
     return { message: 'Progress deleted successfully' };

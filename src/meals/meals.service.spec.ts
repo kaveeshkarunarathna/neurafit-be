@@ -20,6 +20,7 @@ const mockPrismaService = {
 
 const mockAiService = {
   analyzeFood: jest.fn(),
+  recommendMeal: jest.fn(),
 };
 
 describe('MealsService', () => {
@@ -40,6 +41,21 @@ describe('MealsService', () => {
 
   describe('generateMealPlan', () => {
     it('should generate and save a meal plan', async () => {
+      mockAiService.recommendMeal.mockResolvedValue({
+        data: {
+          recommendation: {
+            dailyCalories: 2000,
+            macroTargets: { protein: 150, carbs: 200, fat: 67 },
+            meals: [
+              {
+                name: 'Breakfast',
+                totalCalories: 500,
+                foods: [{ item: 'Oatmeal', protein: 10, carbs: 40, fat: 5 }],
+              },
+            ],
+          },
+        },
+      });
       const mockPlan = { id: 'plan-1', userId: 'user-1', calories: 2000 };
       mockPrismaService.mealPlan.create.mockResolvedValue(mockPlan);
 
@@ -94,7 +110,12 @@ describe('MealsService', () => {
       mockAiService.analyzeFood.mockResolvedValue(mockResult);
 
       const imageBuffer = Buffer.from('fake-image-data');
-      const result = await service.scanMeal('user-1', imageBuffer, 'image/jpeg', undefined);
+      const result = await service.scanMeal(
+        'user-1',
+        imageBuffer,
+        'image/jpeg',
+        undefined,
+      );
 
       expect(result).toEqual(mockResult);
       expect(mockAiService.analyzeFood).toHaveBeenCalledWith(

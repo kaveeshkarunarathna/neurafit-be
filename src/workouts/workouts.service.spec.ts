@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { WorkoutsService } from './workouts.service';
 import { PrismaService } from '../database/prisma.service';
+import { AiService } from '../ai/ai.service';
 
 const FitnessGoal = {
   GAIN_MUSCLE: 'GAIN_MUSCLE',
@@ -14,13 +15,22 @@ const mockPrismaService = {
     create: jest.fn(),
     findMany: jest.fn(),
     count: jest.fn(),
+    findUnique: jest.fn(),
+    delete: jest.fn(),
   },
   workoutSession: {
     create: jest.fn(),
     findMany: jest.fn(),
     count: jest.fn(),
+    findUnique: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
   },
   $transaction: jest.fn(),
+};
+
+const mockAiService = {
+  recommendWorkout: jest.fn(),
 };
 
 describe('WorkoutsService', () => {
@@ -31,6 +41,7 @@ describe('WorkoutsService', () => {
       providers: [
         WorkoutsService,
         { provide: PrismaService, useValue: mockPrismaService },
+        { provide: AiService, useValue: mockAiService },
       ],
     }).compile();
 
@@ -40,6 +51,21 @@ describe('WorkoutsService', () => {
 
   describe('generate', () => {
     it('should generate a workout plan and save it', async () => {
+      mockAiService.recommendWorkout.mockResolvedValue({
+        data: {
+          recommendation: {
+            schedule: [
+              {
+                day: 'Monday',
+                focus: 'Upper Body',
+                exercises: [
+                  { name: 'Bench Press', sets: 4, reps: '8-10', rest: '90s' },
+                ],
+              },
+            ],
+          },
+        },
+      });
       const mockPlan = {
         id: 'plan-1',
         userId: 'user-1',

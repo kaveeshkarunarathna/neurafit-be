@@ -44,7 +44,7 @@ COPY --from=build /app/prisma ./prisma
 # Switch to non-root user
 USER appuser
 
-EXPOSE 3000
+EXPOSE ${PORT:-3000}
 
 # Run migrations then start the server
 CMD ["sh", "-c", "npx prisma db push --skip-generate && node dist/main"]

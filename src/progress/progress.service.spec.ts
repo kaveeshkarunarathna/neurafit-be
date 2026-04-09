@@ -8,8 +8,13 @@ const mockPrismaService = {
     findMany: jest.fn(),
     count: jest.fn(),
     findFirst: jest.fn(),
+    findUnique: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
   },
+  user: { findUnique: jest.fn() },
   workoutSession: { findMany: jest.fn() },
+  workoutPlan: { findFirst: jest.fn() },
   mealLog: { findMany: jest.fn() },
   $transaction: jest.fn(),
 };
@@ -48,9 +53,14 @@ describe('ProgressService', () => {
 
   describe('getAnalytics', () => {
     it('should return analytics with empty data gracefully', async () => {
+      mockPrismaService.user.findUnique.mockResolvedValue({
+        targetWeight: 70,
+        weight: 75,
+      });
       mockPrismaService.progressLog.findMany.mockResolvedValue([]);
       mockPrismaService.workoutSession.findMany.mockResolvedValue([]);
       mockPrismaService.mealLog.findMany.mockResolvedValue([]);
+      mockPrismaService.workoutPlan.findFirst.mockResolvedValue(null);
 
       const result = await service.getAnalytics('user-1');
 

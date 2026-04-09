@@ -1,5 +1,20 @@
-import { Controller, Post, Get, Body, Query, UseGuards, Param, Patch, Delete } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+import {
+  Controller,
+  Post,
+  Get,
+  Body,
+  Query,
+  UseGuards,
+  Param,
+  Patch,
+  Delete,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+  ApiResponse,
+} from '@nestjs/swagger';
 import { ProgressService } from './progress.service';
 import { LogProgressDto } from './dto/log-progress.dto';
 import { UpdateProgressDto } from './dto/update-progress.dto';
@@ -46,7 +61,10 @@ export class ProgressController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update a progress entry' })
-  @ApiResponse({ status: 200, description: 'Progress entry updated successfully.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Progress entry updated successfully.',
+  })
   @ApiResponse({ status: 404, description: 'Progress entry not found.' })
   updateProgress(
     @CurrentUser('id') userId: string,
@@ -58,12 +76,12 @@ export class ProgressController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a progress entry' })
-  @ApiResponse({ status: 200, description: 'Progress entry deleted successfully.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Progress entry deleted successfully.',
+  })
   @ApiResponse({ status: 404, description: 'Progress entry not found.' })
-  deleteProgress(
-    @CurrentUser('id') userId: string,
-    @Param('id') id: string,
-  ) {
+  deleteProgress(@CurrentUser('id') userId: string, @Param('id') id: string) {
     return this.progressService.deleteProgress(userId, id);
   }
 }
