@@ -1,5 +1,9 @@
 import { NestFactory, Reflector } from '@nestjs/core';
-import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
+import {
+  ValidationPipe,
+  ClassSerializerInterceptor,
+  RequestMethod,
+} from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
@@ -20,7 +24,13 @@ async function bootstrap() {
   });
 
   // ─── Global Prefix ─────────────────────────────────────────────────────────
-  app.setGlobalPrefix('api/v1', { exclude: ['/health', '/api/docs'] });
+  app.setGlobalPrefix('api/v1', {
+    exclude: [
+      '/health',
+      { path: '/api/docs', method: RequestMethod.ALL },
+      { path: '/api/docs/(.*)', method: RequestMethod.ALL },
+    ],
+  });
 
   // ─── Global Validation Pipe ────────────────────────────────────────────────
   app.useGlobalPipes(
